@@ -48,6 +48,6 @@ Read the following steps or [📺 watch the video](https://youtu.be/jiU0ogLEXKM)
 
 ## Credits
 
-Concept by (Janna Joceli Omena)[https://github.com/jannajoceli]
+Concept by [Janna Joceli Omena](https://github.com/jannajoceli)
 
-Development by (Jason Chao)[https://github.com/jason-chao]
+Development by [Jason Chao](https://github.com/jason-chao)
