@@ -5,7 +5,6 @@ Offline Image Query and Extraction Tool serves the study of visual content for s
 * Image query according to user accounts or link domains (the site of image creation or appearance) 
 * Image query according to engagement metrics, e.g. shares, comments, views, likes, re-tweets, etc. (the site of image audiencing)
 * Image query according to computer vision outputs, e.g. labels, top-level link domains, web entities, not safe for work content, etc. (the content of the image itself or sites of image circulation)
-* Image query according to a period of time, e.g. hours, days, months, years
 
 This tool was created as a response to the short life of online image URLs, allowing researchers to explore and analyse specific collections of images on demand. 
 
