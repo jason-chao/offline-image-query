@@ -46,7 +46,8 @@ Read the following steps or [📺 watch the video](https://youtu.be/jiU0ogLEXKM)
   * You can visualise and navigate your image query using [ImageSorter](https://visual-computing.com/project/imagesorter/).
 
 
+## Credits
 
+Concept by (Janna Joceli Omena)[https://github.com/jannajoceli]
 
-
-
+Development by (Jason Chao)[https://github.com/jason-chao]
