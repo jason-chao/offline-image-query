@@ -10,7 +10,7 @@ This tool was created as a response to the short life of online image URLs, allo
 
 The tool runs on Windows, mac OS and Linux.  Technically, the tool locates image files scattered in nested and sparse directories by filename, copies them to a new location and then inserts labels as prefixes to the image filenames.
 
-If you use this tool in a scientific scientific publication, please cite it, e.g. in APA style: Chao, T. H. J. & Omena, J. J.  (2021).  Offline Image Query and Extraction Tool (Version 0.1) [Software]. Available from https://github.com/jason-chao/offline-image-query.
+If you use this tool in a scientific scientific publication, please cite it, e.g. in APA style: *Chao, T. H. J. & Omena, J. J.  (2021).  Offline Image Query and Extraction Tool (Version 0.1) [Software]. Available from https://github.com/jason-chao/offline-image-query.*
 
 ## A word of recommendation
 
