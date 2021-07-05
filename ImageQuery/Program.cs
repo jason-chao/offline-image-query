@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ImageQuery
 {
@@ -52,7 +53,30 @@ namespace ImageQuery
 
 
             Console.WriteLine("Reading the CSV file ...");
-            var pairs = LocalFileQuery.LoadLabelData(csvPath);
+
+            ICollection<ImageLabel> pairs = null;
+
+            try
+            {
+                pairs = LocalFileQuery.LoadLabelData(csvPath);
+            }
+            catch { }
+            finally
+            {
+                if (pairs == null)
+                {
+                    Console.WriteLine("Error: The CSV file is invalid");
+                    exit();
+                }
+                else
+                {
+                    if (!pairs.Any())
+                    {
+                        Console.WriteLine("Error: No valid record in the CSV file");
+                        exit();
+                    }
+                }
+            }
 
             Console.Write(Environment.NewLine);
 
@@ -88,7 +112,8 @@ namespace ImageQuery
 
             string targetDirPath = string.Empty;
 
-            do {
+            do
+            {
 
                 Console.Write("Path (press ENTER when done): ");
                 targetDirPath = cleanPath(Console.ReadLine());
@@ -102,7 +127,8 @@ namespace ImageQuery
                         break;
                     }
                     catch { }
-                    finally {
+                    finally
+                    {
                         Console.WriteLine("Error: The input is invalid");
                     }
                 }
@@ -154,7 +180,9 @@ namespace ImageQuery
 
         static string cleanPath(string path)
         {
-            foreach(var ch in Path.GetInvalidPathChars())
+            var invalidPathCharacters = Path.GetInvalidPathChars();
+
+            foreach (var ch in invalidPathCharacters)
             {
                 if (path.Contains(ch))
                     path = path.Replace(ch.ToString(), string.Empty);
@@ -162,7 +190,14 @@ namespace ImageQuery
 
             path = path.Trim();
 
+            if (path.StartsWith("\""))
+                path = path.Substring(1);
+
+            if (path.EndsWith("\""))
+                path = path.Remove(path.Length - 1);
+
             return path;
+
         }
     }
 }

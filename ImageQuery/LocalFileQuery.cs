@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Linq;
+using CsvHelper;
+using System.Globalization;
 
 namespace ImageQuery
 {
@@ -38,21 +40,22 @@ namespace ImageQuery
             return imageLabels;
         }
 
-        public static ICollection<ImageLabel> LoadLabelData(string dataFilename, string delimiter = ",")
+        public static ICollection<ImageLabel> LoadLabelData(string dataFilename, string labelDelimiter = ";")
         {
-            var dataRows = File.ReadAllLines(dataFilename).Distinct();
-            var fileLabelPairs = dataRows.Select(r => r.Split(delimiter));
-
             List<ImageLabel> imageLabels = new List<ImageLabel>();
 
-            foreach (var pair in fileLabelPairs)
+            using (var reader = new StreamReader(dataFilename))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
-                string labels = pair[1];
-                string imageFilename = pair[0].Trim();
-
-                foreach (var label in labels.Split(";").Select(l => l.Trim()))
+                while (csv.Read())
                 {
-                    imageLabels.Add(new ImageLabel() { Label = label, Filename = imageFilename });
+                    string labels = csv.GetField(1);
+                    string imageFilename = csv.GetField(0).Trim();
+
+                    foreach (var label in labels.Split(labelDelimiter).Select(l => l.Trim()))
+                    {
+                        imageLabels.Add(new ImageLabel() { Label = label, Filename = imageFilename });
+                    }
                 }
             }
 
