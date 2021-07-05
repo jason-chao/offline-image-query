@@ -42,7 +42,7 @@ namespace ImageQuery
             do
             {
                 Console.Write("Path (press ENTER when done): ");
-                csvPath = Console.ReadLine().Trim();
+                csvPath = cleanPath(Console.ReadLine());
 
                 if (!File.Exists(csvPath))
                     Console.WriteLine("Error: The file does not exist");
@@ -64,7 +64,7 @@ namespace ImageQuery
             do
             {
                 Console.Write("Path (press ENTER when done): ");
-                datasetDirPath = Console.ReadLine().Trim();
+                datasetDirPath = cleanPath(Console.ReadLine());
 
                 if (!Directory.Exists(datasetDirPath))
                     Console.WriteLine("Error: The folder does not exist");
@@ -91,7 +91,7 @@ namespace ImageQuery
             do {
 
                 Console.Write("Path (press ENTER when done): ");
-                targetDirPath = Console.ReadLine().Trim();
+                targetDirPath = cleanPath(Console.ReadLine());
 
                 if (!Directory.Exists(targetDirPath))
                 {
@@ -150,6 +150,16 @@ namespace ImageQuery
             Console.Write(Environment.NewLine);
 
             exit();
+        }
+
+        static string cleanPath(string path)
+        {
+            if (path.Contains("\""))
+                path = path.Replace("\"", string.Empty);
+
+            path = path.Trim();
+
+            return path;
         }
     }
 }
