@@ -2,6 +2,7 @@
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace ImageQuery
 {
@@ -21,7 +22,7 @@ namespace ImageQuery
 
         static void run()
         {
-            Console.WriteLine("OFFLINE IMAGE QUERY AND EXTRACTION TOOL");
+            Console.WriteLine($"OFFLINE IMAGE QUERY AND EXTRACTION TOOL v{Assembly.GetExecutingAssembly().GetName().Version}");
             Console.WriteLine("https://github.com/jason-chao/offline-image-query");
             Console.Write(Environment.NewLine);
 
