@@ -154,8 +154,11 @@ namespace ImageQuery
 
         static string cleanPath(string path)
         {
-            if (path.Contains("\""))
-                path = path.Replace("\"", string.Empty);
+            foreach(var ch in Path.GetInvalidPathChars())
+            {
+                if (path.Contains(ch))
+                    path = path.Replace(ch.ToString(), string.Empty);
+            }
 
             path = path.Trim();
 
