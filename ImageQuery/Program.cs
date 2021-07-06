@@ -42,7 +42,7 @@ namespace ImageQuery
                 Console.Write(Environment.NewLine);
             }
 
-                Console.WriteLine("1. CSV file: the CSV file of image filenames and labels");
+            Console.WriteLine("1. CSV file: the CSV file of image filenames and labels");
             Console.WriteLine("Note: The filename must be in the first column and the label must be in the second column.");
             Console.WriteLine("The headers in the first row are irrelevant.");
             Console.Write(Environment.NewLine);
@@ -203,6 +203,9 @@ namespace ImageQuery
             path = path.Trim();
 
             List<string> invalidPathCharacters = Path.GetInvalidPathChars().Select(c => c.ToString()).ToList();
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                invalidPathCharacters.Add("\\");
 
             foreach (var ch in invalidPathCharacters)
             {
