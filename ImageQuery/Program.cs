@@ -3,6 +3,7 @@ using System.Linq;
 using System.IO;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace ImageQuery
 {
@@ -179,23 +180,33 @@ namespace ImageQuery
             exit();
         }
 
+        static string trimQuotationMarks(string path, string quotationMark = "\"")
+        {
+            if (path.StartsWith(quotationMark))
+                path = path.Substring(1);
+
+            if (path.EndsWith(quotationMark))
+                path = path.Remove(path.Length - 1);
+
+            return path;
+        }
+
         static string cleanPath(string path)
         {
-            var invalidPathCharacters = Path.GetInvalidPathChars();
+            path = path.Trim();
+
+            List<string> invalidPathCharacters = Path.GetInvalidPathChars().Select(c => c.ToString()).ToList();
 
             foreach (var ch in invalidPathCharacters)
             {
                 if (path.Contains(ch))
-                    path = path.Replace(ch.ToString(), string.Empty);
+                    path = path.Replace(ch, string.Empty);
             }
 
-            path = path.Trim();
-
-            if (path.StartsWith("\""))
-                path = path.Substring(1);
-
-            if (path.EndsWith("\""))
-                path = path.Remove(path.Length - 1);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                path = trimQuotationMarks(path, "\"");
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                path = trimQuotationMarks(path, "'");
 
             return path;
 

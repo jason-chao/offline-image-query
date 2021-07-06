@@ -33,6 +33,8 @@ On Windows, open OfflineImageQuery.exe extracted from the zip file.  If Windows 
 
 Read the following steps or [📺 watch the video](https://youtu.be/gp7a8hj40Po)
 
+*Note on naming of file / folder on MacOS and Linux:  Please remove any backslash (\\), quotation mark (' or ") and trailing whitespace from the name of the file or folder to be dragged into the tool.  The tool might not correctly recongise the path due to system behaviour.*
+
 * Make sure you have a CSV (comma separated values) file and a folder of images located in your computer. 
   * Note: The filename must be in the first column and the label must be in the second column.
   * The headers in the first row are irrelevant.
