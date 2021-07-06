@@ -35,7 +35,14 @@ namespace ImageQuery
 
             Console.WriteLine("Hint: You may drag and drop a folder / file to the terminal window to paste the path.");
             Console.Write(Environment.NewLine);
-            Console.WriteLine("1. CSV file: the CSV file of image filenames and labels");
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                Console.WriteLine("Note for MacOS and Linux users: Please remove any backslash (\\), quotation mark (' or \") and trailing whitespace from the name of folder or file to be dropped to the terminal window.");
+                Console.Write(Environment.NewLine);
+            }
+
+                Console.WriteLine("1. CSV file: the CSV file of image filenames and labels");
             Console.WriteLine("Note: The filename must be in the first column and the label must be in the second column.");
             Console.WriteLine("The headers in the first row are irrelevant.");
             Console.Write(Environment.NewLine);
